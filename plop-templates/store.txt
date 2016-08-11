@@ -1,0 +1,18 @@
+import {
+  observable,
+  autorun,
+  computed
+} from 'mobx';
+//
+// mobx store for {{properCase name}}
+//
+class {{properCase name}} {
+  @observable currentRoute = ''
+  @observable arrayOfThings = []
+  @computed get amountOfThings() {
+      return this.arrayOfThings.length;
+  }
+}
+
+const {{camelCase name}} = new {{properCase name}}();
+export default {{camelCase name}};
