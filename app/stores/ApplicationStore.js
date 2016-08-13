@@ -18,26 +18,25 @@ class ApplicationStore {
       return this.arrayOfThings.length;
   }
 
+  constructor() {
+    //on every route change, persist route
+    reaction(() => this.currentRoute,() => {
+      // store.save('currentRoute', this.currentRoute);
+    });
+    // rehydrate app
+    autorun(() => {
+      store.get('currentRoute').then((route) => {
+        // if (route) {
+        //   app.currentRoute = route;
+        // }
+        this.hydrated = true;
+      })
+    });
+  }
+
   // simple jarring jump to screen func
   @action goTo(screen) {
     this.currentRoute = screen;
   }
 }
-const app = new ApplicationStore();
-
-// on every route change, persist route
-reaction(() => app.currentRoute,() => {
-  store.save('currentRoute', app.currentRoute);
-});
-
-// rehydrate app
-autorun(() => {
-  store.get('currentRoute').then((route) => {
-    if (route) {
-      app.currentRoute = route;
-    }
-    app.hydrated = true;
-  })
-});
-
-export default app;
+export default new ApplicationStore();

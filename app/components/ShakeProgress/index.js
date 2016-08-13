@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import {
-  View,
+  TouchableOpacity,
   Text,
   StyleSheet
 } from 'react-native';
-
-const CURRENT = 2;
-const GOAL = 3;
 
 class ShakeProgress extends Component {
 
@@ -19,18 +16,19 @@ class ShakeProgress extends Component {
   }
 
   render() {
+    const { current = 2, goal = 3 } = this.props;
     return (
-      <View style={ styles.component }>
+      <TouchableOpacity style={styles.component} onPress={this.props.onPress}>
         <AnimatedCircularProgress
           size={300}
           rotation={360}
-          width={12}
-          fill={CURRENT / GOAL * 100}
+          width={8}
+          fill={current / goal * 100}
           tintColor="#000000"
           backgroundColor="#bfbfbf"
         />
-      <Text style={styles.current}>{CURRENT}</Text>
-      </View>
+      <Text style={styles.current}>{current}</Text>
+      </TouchableOpacity>
     )
   }
 }

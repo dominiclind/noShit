@@ -12,7 +12,10 @@ class {{properCase name}} {
   @computed get amountOfThings() {
       return this.arrayOfThings.length;
   }
-}
 
-const {{camelCase name}} = new {{properCase name}}();
-export default {{camelCase name}};
+  constructor() {
+    // place reactions and autoruns here.
+
+  }
+}
+export default new {{camelCase name}}();
